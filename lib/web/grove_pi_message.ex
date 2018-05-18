@@ -9,7 +9,7 @@ defmodule Web.GrovePiMessage do
   end
 
   def set_component_value_message(list) do
-    IO.puts("message module got set value")
+    Blockytalky.GrovePi.set_component_value(:D2, 1)
   end
 
   def get_component_value_message(list) do
