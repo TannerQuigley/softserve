@@ -22,6 +22,7 @@ defmodule Softserve.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:poison, "~> 3.1"},
       {:cowboy, "~>1.0.3"},
       {:plug, "~> 1.0"},
       {:websockex, "~> 0.4.0"},
