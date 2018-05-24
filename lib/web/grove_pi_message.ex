@@ -10,10 +10,19 @@ defmodule Web.GrovePiMessage do
     port = list["options"]["port"]
     type = list["deviceType"]
 
-    IO.puts(port)
     IO.puts(type)
 
-    Blockytalky.GrovePi.set_component_type(:D2,type)
+    case port do
+        0 -> Blockytalky.GrovePi.set_component_type(:A0,type)
+ 	1 -> Blockytalky.GrovePi.set_component_type(:A1,type)
+	2 -> Blockytalky.GrovePi.set_component_type(:A2,type)
+	3 -> Blockytalky.GrovePi.set_component_type(:D3,type)
+	4 -> Blockytalky.GrovePi.set_component_type(:D4,type)
+	5 -> Blockytalky.GrovePi.set_component_type(:D5,type)
+	6 -> Blockytalky.GrovePi.set_component_type(:D6,type)
+	7 -> Blockytalky.GrovePi.set_component_type(:D7,type)
+	8 -> Blockytalky.GrovePi.set_component_type(:D8,type)
+    end
 
   end
 
@@ -32,8 +41,6 @@ defmodule Web.GrovePiMessage do
 	8 -> Blockytalky.GrovePi.set_component_value(:D8, 1)
 	_ -> IO.puts("A non digital port was selected")
     end
-
-
     
   end
 
