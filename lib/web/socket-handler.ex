@@ -20,7 +20,7 @@ defmodule Web.SocketHandler do
     #led catch experimentation
     {:ok, list} = JSON.decode(message)
 
-    case list["messageType"] do
+    case list["target"] do
       "setComponentType" -> 
         IO.puts("setComponentType recieved")
         Web.GrovePiMessage.set_component_type_message(list)
