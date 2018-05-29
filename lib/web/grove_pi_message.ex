@@ -33,9 +33,10 @@ defmodule Web.GrovePiMessage do
     IO.puts("MESSAG")
 
     port = list["options"]["port"]
-    val = list["options"]["setValue"]
+    val = list["options"]["value"]
 
-    IO.puts(val)
+    {setInt, ""} = Integer.parse(val)
+    IO.puts(setInt)
 
     case port do
 	2 -> Blockytalky.GrovePi.set_component_value(:D2, 1)
