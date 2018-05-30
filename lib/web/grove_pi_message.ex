@@ -30,22 +30,21 @@ defmodule Web.GrovePiMessage do
   end
 
   def set_component_value_message(list) do
-    IO.puts("MESSAG")
+    IO.puts("MESSAGE")
 
     port = list["options"]["port"]
     val = list["options"]["value"]
 
     {setInt, ""} = Integer.parse(val)
-    IO.puts(setInt)
 
     case port do
-	2 -> Blockytalky.GrovePi.set_component_value(:D2, 1)
-	3 -> Blockytalky.GrovePi.set_component_value(:D3, 1)
-	4 -> Blockytalky.GrovePi.set_component_value(:D4, 1)
-	5 -> Blockytalky.GrovePi.set_component_value(:D5, 1)
-	6 -> Blockytalky.GrovePi.set_component_value(:D6, 1)
-	7 -> Blockytalky.GrovePi.set_component_value(:D7, 1)
-	8 -> Blockytalky.GrovePi.set_component_value(:D8, 1)
+	2 -> Blockytalky.GrovePi.set_component_value(:D2, setInt)
+	3 -> Blockytalky.GrovePi.set_component_value(:D3, setInt)
+	4 -> Blockytalky.GrovePi.set_component_value(:D4, setInt)
+	5 -> Blockytalky.GrovePi.set_component_value(:D5, setInt)
+	6 -> Blockytalky.GrovePi.set_component_value(:D6, setInt)
+	7 -> Blockytalky.GrovePi.set_component_value(:D7, setInt)
+	8 -> Blockytalky.GrovePi.set_component_value(:D8, setInt)
 	_ -> IO.puts("A non digital port was selected")
     end
     
