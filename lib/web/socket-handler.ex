@@ -29,7 +29,12 @@ defmodule Web.SocketHandler do
         Web.GrovePiMessage.set_component_value_message(list)
       "getComponentValue" ->
         IO.puts("getComponentValue recieved")
-        Web.GrovePiMessage.get_component_value_message(list)
+        val = Web.GrovePiMessage.get_component_value_message(list)
+        
+        list = Map.put(list, "value", val)
+
+        {:ok, message} = JSON.encode(list)
+
       _ -> IO.puts("uncaught message type") 
     end
     {:reply, {:text, message}, req, state}
