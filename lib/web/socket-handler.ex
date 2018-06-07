@@ -34,8 +34,15 @@ defmodule Web.SocketHandler do
         list = Map.put(list, "value", val)
 
         {:ok, message} = JSON.encode(list)
+        IO.puts(message)
+      "watchComponentValue" ->
+        IO.puts("watchComponentValue recieved")
+        val = Web.GrovePiMessage.watch_component_value_message(list)
+        if val == 1 do 
+          IO.puts("send messege here")
+        end
 
-      _ -> IO.puts("uncaught message type") 
+       _ -> IO.puts("uncaught message type") 
     end
     {:reply, {:text, message}, req, state}
   end

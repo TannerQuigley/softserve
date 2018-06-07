@@ -18,13 +18,22 @@ defmodule Blockytalky.GrovePi do
 	def get_component_value(port_id) do
 		{port_num, type} = Map.get(port_id_map, port_id,{nil,nil})
 		io = GrovePiState.get_port_io(port_id)
+                IO.puts(type)
                 case io do
 		   "OUTPUT" -> GrovePiState.get_last_set_value(port_id) 
                     _ -> 
-			{_,v} = PythonQuerier.run_result(:btgrovepi,:get_sensor_value,[port_num,type,io])		
+			{_,v} = PythonQuerier.run_result(:btgrovepi,:get_sensor_value,[port_num,type,io])
+		        IO.puts(v) 
 		        if v == "Error", do: nil, else: v
 	        end
 	end
+
+        def watch_component_value(port_id) do
+                {port_num, type} = Map.get(port_id_map, port_id, {nil,nil})
+                io = GrovePiState.get_port_io(port_id)
+                {_,v} = PythonQuerier.run_result(:btgrovepi,:get_sensor_value,[port_num, type,io])
+                IO.puts(v)    
+        end
 	
 	def set_component_type(port_id, component_id) do
 		{port_num, _} = Map.get(port_id_map, port_id)

@@ -70,4 +70,30 @@ defmodule Web.GrovePiMessage do
 
   end
 
+  def watch_component_value_message(list) do 
+    IO.puts("message module got watch value")
+
+    port = list["options"]["port"]
+
+    case port do
+        0 -> val = Blockytalky.GrovePi.get_component_value(:A0)
+        1 -> val = Blockytalky.GrovePi.get_component_value(:A1)
+	2 -> val = Blockytalky.GrovePi.get_component_value(:D2)
+	3 -> val = Blockytalky.GrovePi.get_component_value(:D3)
+	4 -> val = Blockytalky.GrovePi.get_component_value(:D4)
+	5 -> val = Blockytalky.GrovePi.get_component_value(:D5)
+	6 -> val = Blockytalky.GrovePi.get_component_value(:D6)
+	7 -> val = Blockytalky.GrovePi.get_component_value(:D7)
+	8 -> val = Blockytalky.GrovePi.get_component_value(:D8)
+	_ -> IO.puts("A non existing port was selected")
+    end
+
+    if val == 1 do
+      val
+    else 
+      watch_component_value_message(list)
+    end
+
+  end
+
 end
