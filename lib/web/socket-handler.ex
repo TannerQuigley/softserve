@@ -40,6 +40,7 @@ defmodule Web.SocketHandler do
         val = Web.GrovePiMessage.watch_component_value_message(list)
         if val == 1 do 
           IO.puts("send messege here")
+          websocket_handle({:text, message}, req, state)
         end
 
        _ -> IO.puts("uncaught message type") 

@@ -24,16 +24,19 @@ def get_sensor_value(port_num,sensor_type,sensor_io):
     val = 0
     val2 = 0
     try: 
-	   
 	    if sensor_io == "ULTRASONIC":
 		val = ultrasonicRead(port_num)
 	    elif sensor_io == "DHT":
 		[val,val2] = dht(port_num,0)
 	    elif sensor_type == "analog":
-                print("caught analog")
+                print("caught analogg")
 		val = analogRead(port_num)
 	    elif sensor_type == "digital":
+                print("caught digital")
 		val = digitalRead(port_num)
+            elif sensor_type == "PWM":
+                print("caught PWM")
+                val = digitalRead(port_num)
 	    
     except: 
 	    return "Error"

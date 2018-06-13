@@ -32,7 +32,8 @@ defmodule Blockytalky.GrovePi do
                 {port_num, type} = Map.get(port_id_map, port_id, {nil,nil})
                 io = GrovePiState.get_port_io(port_id)
                 {_,v} = PythonQuerier.run_result(:btgrovepi,:get_sensor_value,[port_num, type,io])
-                IO.puts(v)    
+                IO.puts(v)
+                if v == "Error", do: nil, else: v 
         end
 	
 	def set_component_type(port_id, component_id) do
