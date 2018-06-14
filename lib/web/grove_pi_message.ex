@@ -91,7 +91,8 @@ defmodule Web.GrovePiMessage do
     if val == 1 do
       val
     else 
-      watch_component_value_message(list)
+      # watch_component_value_message(list)
+      spawn(Web.GrovePiMessage, :watch_component_value_message, [list])
     end
 
   end
